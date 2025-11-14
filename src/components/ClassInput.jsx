@@ -1,4 +1,5 @@
 import { Component } from "react";
+import Task from "./Task.jsx"
 
 class ClassInput extends Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class ClassInput extends Component {
         <h4>All the tasks!</h4>
         <ul>
           {this.state.todos.map((todo) => (
-            <li key={todo}>{todo}</li>
+            <Task key={todo} details={todo}/>
           ))}
         </ul>
       </section>
