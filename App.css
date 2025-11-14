@@ -1,0 +1,7 @@
+#root{
+    max-width: fit-content;
+    margin-inline: auto;
+    margin-block: 10%;
+    border: black 2px solid;
+    border-radius: 5%;
+}
