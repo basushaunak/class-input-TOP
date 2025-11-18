@@ -1,7 +1,7 @@
 import { Component } from "react";
 import Task from "./Task.jsx"
-
-class ClassInput extends Component {
+import TaskCount from "./TaskCount.jsx"
+export default class ClassInput extends Component {
   constructor(props) {
     super(props);
 
@@ -50,9 +50,10 @@ class ClassInput extends Component {
             <Task key={todo} details={todo}/>
           ))}
         </ul>
+        <TaskCount count={this.state.todos.length} />
       </section>
     );
   }
 }
 
-export default ClassInput;
+
