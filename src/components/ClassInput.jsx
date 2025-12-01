@@ -36,25 +36,64 @@ export default class ClassInput extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
     this.setState((prevState) => ({
-      todos: prevState.todos.concat({
-        data: prevState.inputVal,
-        key: this.generateKey(),
-      }),
+      todos:
+        prevState.inputVal.trim() === ""
+          ? prevState.todos
+          : prevState.todos.concat({
+              data: prevState.inputVal,
+              key: this.generateKey(),
+              isEditing: false,
+              editData: prevState.inputVal,
+            }),
       inputVal: "",
     }));
   }
 
   handleDelete = (key) => {
-    console.log("Delete: " + key);
-    this.setState((prevState)=>({
-      todos: prevState.todos.filter((todo)=>todo.key !== key),
-    }))
+    this.setState((prevState) => ({
+      todos: prevState.todos.filter((todo) => todo.key !== key),
+    }));
   };
-  
+
   handleEdit = (key) => {
-    console.log("Edit: " + key);
+    // console.log("Edit: " + key);
+    this.setState((prevState) => ({
+      todos: prevState.todos.map((todo) =>
+        todo.key === key ? { ...todo, isEditing: true } : todo
+      ),
+    }));
   };
+
+  handleTaskChange = (key, value) => {
+    this.setState((prevState) => ({
+      todos: prevState.todos.map((todo) =>
+        todo.key === key ? { ...todo, editData: value } : todo
+      ),
+    }));
+  };
+
+  handleCancel = (key) => {
+    this.setState((prevState) => ({
+      todos: prevState.todos.map((todo) =>
+        todo.key === key
+          ? { ...todo, isEditing: false, editData: todo.data }
+          : todo
+      ),
+    }));
+  };
+
+  handleTaskSave = (key) => {
+    this.setState((prevState) => ({
+      todos: prevState.todos.map((todo) =>
+        todo.key === key
+          ? { ...todo, isEditing: false, data: todo.editData }
+          : todo
+      ),
+    }));
+  };
+
   render() {
     return (
       <section>
@@ -73,14 +112,20 @@ export default class ClassInput extends Component {
         <h4>All the tasks!</h4>
         <ul>
           {this.state.todos.map((todo) => (
-            <Task
-              key={todo.key}
-              taskKey={todo.key}
-              id={todo.key}
-              details={todo.data}
-              handleDelete={() => this.handleDelete(todo.key)}
-              handleEdit={() => this.handleEdit(todo.key)}
-            />
+            <li key={todo.key}>
+              <Task
+                taskKey={todo.key}
+                id={todo.key}
+                data={todo.data}
+                isEditing={todo.isEditing}
+                editData={todo.editData}
+                handleDelete={this.handleDelete}
+                handleEdit={this.handleEdit}
+                handleTaskChange={this.handleTaskChange}
+                handleTaskSave={this.handleTaskSave}
+                handleCancel={this.handleCancel}
+              />
+            </li>
           ))}
         </ul>
         <TaskCount count={this.state.todos.length} />

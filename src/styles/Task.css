@@ -1,13 +1,9 @@
 .task {
   display: grid;
-  grid-template-columns: 2ch minmax(10ch, 30ch) 15ch 15ch;
-  row-gap: 0.5rem;
-  column-gap: 0.1rem;
+  grid-template-columns: minmax(10ch, 30ch) 8ch 8ch;
+  row-gap: 0.1rem;
+  column-gap: 0.2rem;
   line-height: 1.2rem;
-}
-.task > * {
-  padding-bottom: 0.25rem;
-  border-bottom: 2px black solid;
 }
 .btn {
   display: flex;
@@ -15,14 +11,13 @@
   justify-content: center;
   height: auto;
   padding-inline: auto;
-  /* background-color: gray; */
   color: red;
   font-style: bold;
 }
 .btn:hover {
   cursor: pointer;
 }
-.task-details {
+.task-data {
   justify-self: stretch;
   text-align: left;
 }
