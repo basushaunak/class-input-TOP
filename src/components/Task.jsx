@@ -6,11 +6,15 @@ export default class Task extends Component {
   }
   render() {
     return (
-      <div className="task" key={this.props.key}>
+      <div className="task" id={this.props.taskKey}>
         <p>*</p>
         <p className="task-details">{this.props.details}</p>
-        <p className="btn">Delete</p>
-        <p className="btn">Edit</p>
+        <p className="btn" onClick={this.props.handleDelete}>
+          Delete
+        </p>
+        <p className="btn" onClick={this.props.handleEdit}>
+          Edit
+        </p>
       </div>
     );
   }
