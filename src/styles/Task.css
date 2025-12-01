@@ -21,3 +21,6 @@
   justify-self: stretch;
   text-align: left;
 }
+p{
+  margin-block: 0;
+}
