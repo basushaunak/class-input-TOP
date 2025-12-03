@@ -1,6 +1,7 @@
 import { Component } from "react";
 import Task from "./Task.jsx";
 import TaskCount from "./TaskCount.jsx";
+import "../styles/ClassInput.css";
 export default class ClassInput extends Component {
   constructor(props) {
     super(props);
